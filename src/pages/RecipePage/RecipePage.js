@@ -12,11 +12,11 @@ import SearchForm from './SearchForm';
 const RecipePage = () => {
   const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
 
+
+  const { categories, meals, categoryLoading, mealsLoading } = useMealContext();
   if (!isLoggedIn) {
     return <Navigate to="/login" replace />;
   }
-
-  const { categories, meals, categoryLoading, mealsLoading } = useMealContext();
 
   return (
     <main className="main-content header">

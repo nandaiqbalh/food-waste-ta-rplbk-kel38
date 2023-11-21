@@ -15,7 +15,7 @@ function App() {
       {/* <Header />
       <Sidebar /> */}
       <Routes>
-        <Route path="/" element={[<Header />, <Home />]} />
+        <Route path="/" element={[<Header />, <FWaste />]} />
         <Route path="/meal/:id" element={[<Header />, <MealDetails />]} />
         <Route path="/meal/category/:name" element={[<Header />, <Category />]} />
         <Route path="*" element={<Error />} />

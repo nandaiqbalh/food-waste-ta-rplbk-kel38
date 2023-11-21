@@ -11,10 +11,6 @@ import { Navigate, useNavigate } from 'react-router-dom';
 const MealDetailsPage = () => {
   const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
 
-  if (!isLoggedIn) {
-    return <Navigate to="/login" replace />;
-  }
-
   const { id } = useParams();
   const { categories, dispatch, meal, categoryLoading, mealLoading } = useMealContext();
 
@@ -52,6 +48,11 @@ const MealDetailsPage = () => {
       measures: measuresArr
     }
   }
+
+  if (!isLoggedIn) {
+    return <Navigate to="/login" replace />;
+  }
+
 
   return (
     <main className='main-content bg-whitesmoke'>

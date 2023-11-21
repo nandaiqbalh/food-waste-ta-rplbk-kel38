@@ -4,15 +4,10 @@ import { useMealContext } from '../../context/mealContext';
 import MealList from '../../components/Meal/MealList';
 import { useParams } from 'react-router-dom';
 import { startFetchMealByCategory } from '../../actions/mealsActions';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 const CategoryPage = () => {
   const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-
-  if (!isLoggedIn) {
-    return <Navigate to="/login" replace />;
-  }
-
   const { name } = useParams();
   const { categoryMeals, dispatch, categories } = useMealContext();
   let catDescription = "";
@@ -27,6 +22,9 @@ const CategoryPage = () => {
     startFetchMealByCategory(dispatch, name);
   }, [name, dispatch]);
 
+  if (!isLoggedIn) {
+    return <Navigate to="/login" replace />;
+  }
   return (
     <main className='main-content py-5'>
       <div className='container'>
