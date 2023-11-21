@@ -18,8 +18,6 @@ const HomePage = () => {
     return <Navigate to="/login" replace />;
   }
 
-
-
   return (
     <main className="main-content">
       {mealsLoading ? <Loader /> : meals === null ? <NotFound /> : meals?.length ? <MealList meals={meals} /> : ''}

@@ -5,10 +5,17 @@ import Loader from '../../components/Loader/Loader';
 import CategoryList from '../../components/Category/CategoryList';
 import NotFound from '../../components/NotFound/NotFound';
 import MealList from '../../components/Meal/MealList';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 import SearchForm from './SearchForm';
 
 const RecipePage = () => {
+  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+  if (!isLoggedIn) {
+    return <Navigate to="/login" replace />;
+  }
+
   const { categories, meals, categoryLoading, mealsLoading } = useMealContext();
 
   return (

@@ -1,18 +1,25 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import "./CategoryPage.scss";
 import { useMealContext } from '../../context/mealContext';
 import MealList from '../../components/Meal/MealList';
 import { useParams } from 'react-router-dom';
 import { startFetchMealByCategory } from '../../actions/mealsActions';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const CategoryPage = () => {
-  const {name} = useParams();
+  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+  if (!isLoggedIn) {
+    return <Navigate to="/login" replace />;
+  }
+
+  const { name } = useParams();
   const { categoryMeals, dispatch, categories } = useMealContext();
   let catDescription = "";
 
-  if(categories){
+  if (categories) {
     categories.forEach(category => {
-      if(category?.strCategory === name) catDescription = category?.strCategoryDescription;
+      if (category?.strCategory === name) catDescription = category?.strCategoryDescription;
     })
   }
 
@@ -29,7 +36,7 @@ const CategoryPage = () => {
         </div>
       </div>
       {
-        (categoryMeals?.length) ? <MealList meals = { categoryMeals } /> : null
+        (categoryMeals?.length) ? <MealList meals={categoryMeals} /> : null
       }
     </main>
   )

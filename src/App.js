@@ -6,6 +6,7 @@ import { Home, MealDetails, Recipe, Error, Category, Login, About, FWaste } from
 // components
 import Header from './components/Header/Header';
 import Sidebar from './components/Sidebar/Sidebar';
+import React from 'react';
 
 
 function App() {

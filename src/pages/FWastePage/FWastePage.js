@@ -6,6 +6,7 @@ import Loader from '../../components/Loader/Loader';
 import CategoryList from '../../components/Category/CategoryList';
 import NotFound from '../../components/NotFound/NotFound';
 import MealList from '../../components/Meal/MealList';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 // const FWastePage = () => {
 //   const { categories, meals, categoryLoading, mealsLoading } = useMealContext();
@@ -14,6 +15,13 @@ import MealList from '../../components/Meal/MealList';
 // };
 
 const FWastePage = () => {
+  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+  if (!isLoggedIn) {
+    return <Navigate to="/login" replace />;
+  }
+
+
   return (
     <div>
       <section className="main-section">
