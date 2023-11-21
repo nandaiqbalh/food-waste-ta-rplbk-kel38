@@ -18,20 +18,15 @@ const HomePage = () => {
     return <Navigate to="/login" replace />;
   }
 
-  const handleLogout = (e) => {
-    localStorage.setItem('isLoggedIn', 'false');
-    navigate('/login');
-  };
+
 
   return (
     <main className="main-content">
       {mealsLoading ? <Loader /> : meals === null ? <NotFound /> : meals?.length ? <MealList meals={meals} /> : ''}
       {categoryLoading ? <Loader /> : <CategoryList categories={categories} />}
-      <main className="main-content">
-        {mealsLoading ? <Loader /> : meals === null ? <NotFound /> : meals?.length ? <MealList meals={meals} /> : ''}
-        {categoryLoading ? <Loader /> : <CategoryList categories={categories} />}
-      </main>
-      );
+
+    </main>
+  );
 };
 
-      export default HomePage;
+export default HomePage;

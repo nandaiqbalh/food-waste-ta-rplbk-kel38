@@ -3,10 +3,13 @@ import { Link } from 'react-router-dom';
 import './Header.scss';
 import { MdEco } from 'react-icons/md';
 import { IoMdMenu } from 'react-icons/io';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 import { useSidebarContext } from '../../context/sidebarContext';
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
   const { openSidebar } = useSidebarContext();
   const [scrolled, setScrolled] = useState(false);
 
@@ -17,6 +20,11 @@ const Navbar = () => {
     } else {
       setScrolled(false);
     }
+  };
+
+  const handleLogout = (e) => {
+    localStorage.setItem('isLoggedIn', 'false');
+    navigate('/login');
   };
 
   useEffect(() => {
@@ -42,15 +50,15 @@ const Navbar = () => {
             <Link to="/About" className="navbar-brand fw-3 fs-20 flex align-center">
               <span className="navbar-brand-text fw-6">About</span>
             </Link>
-            <Link to="/" className="navbar-brand fw-3 fs-20 flex align-center">
-              <span className="navbar-brand-text fw-6">Logout</span>
-            </Link>
 
-            <div className="navbar-btns flex align-center">
+            <div className="wrap-button ">
+              <button className="navbar-brand-text fw-6" onClick={handleLogout}>Logout</button>
+            </div>
+            {/* <div className="navbar-btns flex align-center">
               <button type="button" className="navbar-show-btn text-white" onClick={() => openSidebar()}>
                 <IoMdMenu size={27} />
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
