@@ -1,5 +1,6 @@
 import React from 'react';
 import './HomePage.scss';
+import './HomePage.scss';
 import { useMealContext } from '../../context/mealContext';
 import Loader from '../../components/Loader/Loader';
 import CategoryList from '../../components/Category/CategoryList';
@@ -26,8 +27,11 @@ const HomePage = () => {
     <main className="main-content">
       {mealsLoading ? <Loader /> : meals === null ? <NotFound /> : meals?.length ? <MealList meals={meals} /> : ''}
       {categoryLoading ? <Loader /> : <CategoryList categories={categories} />}
-    </main>
-  );
+      <main className="main-content">
+        {mealsLoading ? <Loader /> : meals === null ? <NotFound /> : meals?.length ? <MealList meals={meals} /> : ''}
+        {categoryLoading ? <Loader /> : <CategoryList categories={categories} />}
+      </main>
+      );
 };
 
-export default HomePage;
+      export default HomePage;
